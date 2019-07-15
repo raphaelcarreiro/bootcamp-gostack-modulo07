@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import GlobalStyle from './styles/global';
+import Header from './components/header/Header';
 
-function App() {
+function App(props) {
+  const { children } = props;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <GlobalStyle />
+      <Header />
+      {children}
+    </Fragment>
   );
 }
+
+App.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+};
 
 export default App;
