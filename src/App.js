@@ -1,16 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Provider } from 'react-redux';
 import GlobalStyle from './styles/global';
 import Header from './components/header/Header';
+import './config/ReactotronConfig';
+import store from './store';
 
 function App(props) {
   const { children } = props;
   return (
-    <Fragment>
+    <Provider store={store}>
       <GlobalStyle />
       <Header />
       {children}
-    </Fragment>
+    </Provider>
   );
 }
 

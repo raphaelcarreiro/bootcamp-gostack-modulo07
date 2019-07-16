@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { darken } from 'polished';
 
 export const ProductList = styled.ul`
@@ -64,4 +64,48 @@ export const ProductList = styled.ul`
       }
     }
   }
+`;
+
+const animation = keyframes`
+  0% {
+      background-position: -468px 0
+  }
+  100% {
+      background-position: 468px 0
+  }
+`;
+
+const placeholder = styled.div`
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: ${animation};
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+  position: relative;
+`;
+
+export const ItemPlaceholder = styled.li`
+  background: #fff;
+  display: flex;
+  flex: 1;
+  border-radius: 4px;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+
+  div {
+    width: 250px;
+    height: 250px;
+    background: #eee;
+  }
+`;
+
+export const ListPlaceholder = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  list-style: none;
 `;
