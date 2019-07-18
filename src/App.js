@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import GlobalStyle from './styles/global';
 import Header from './components/header/Header';
 import './config/ReactotronConfig';
@@ -11,6 +12,7 @@ function App(props) {
   return (
     <Provider store={store}>
       <GlobalStyle />
+      <ToastContainer autoClose={3000} />
       <Header />
       {children}
     </Provider>

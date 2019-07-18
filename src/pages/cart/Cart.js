@@ -12,14 +12,14 @@ import * as CartActions from '../../store/modules/cart/actions';
 import { formatPrice } from '../../util/format';
 
 function Cart(props) {
-  const { removeFromCart, updateAmount, cart, total } = props;
+  const { removeFromCart, updateAmountRequest, cart, total } = props;
 
   function increment(product) {
-    updateAmount(product.id, product.amount + 1);
+    updateAmountRequest(product.id, product.amount + 1);
   }
 
   function decrement(product) {
-    updateAmount(product.id, product.amount - 1);
+    updateAmountRequest(product.id, product.amount - 1);
   }
 
   return (
@@ -36,7 +36,7 @@ function Cart(props) {
         </thead>
         <tbody>
           {cart.map(product => (
-            <tr>
+            <tr key={product.id}>
               <td>
                 <img src={product.image} alt={product.title} />
               </td>
@@ -49,7 +49,11 @@ function Cart(props) {
                   <button onClick={() => decrement(product)} type="button">
                     <MdRemoveCircleOutline size={20} color="#7159c1" />
                   </button>
-                  <input type="number" value={product.amount} />
+                  <input
+                    type="number"
+                    onChange={() => {}}
+                    value={product.amount}
+                  />
                   <button onClick={() => increment(product)} type="button">
                     <MdAddCircleOutline size={20} color="#7159c1" />
                   </button>
@@ -84,7 +88,9 @@ function Cart(props) {
 
 Cart.propTypes = {
   removeFromCart: PropTypes.func.isRequired,
-  cart: PropTypes.shape({}).isRequired,
+  updateAmountRequest: PropTypes.func.isRequired,
+  total: PropTypes.string.isRequired,
+  cart: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -32,10 +32,10 @@ function Home(props) {
       });
   }, []);
 
-  function handleProduct(product) {
-    const { addToCart } = props;
+  function handleProduct(id) {
+    const { addToCartRequest } = props;
 
-    addToCart(product);
+    addToCartRequest(id);
   }
 
   return (
@@ -49,10 +49,10 @@ function Home(props) {
               <img src={product.image} alt={product.title} />
               <strong>{product.title}</strong>
               <span>{product.formattedPrice}</span>
-              <button type="button" onClick={() => handleProduct(product)}>
+              <button type="button" onClick={() => handleProduct(product.id)}>
                 <div>
                   <MdAddShoppingCart size={16} color="#fff" />
-                  {amount[product.id]}
+                  {amount[product.id] || 0}
                 </div>
                 <span>Adicionar ao carrinho</span>
               </button>
@@ -65,7 +65,8 @@ function Home(props) {
 }
 
 Home.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  addToCartRequest: PropTypes.func.isRequired,
+  amount: PropTypes.shape([]).isRequired,
 };
 
 const mapStateToProps = state => ({
